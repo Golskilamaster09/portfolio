@@ -351,6 +351,16 @@ h1 {
   border-color: #41444e;
 }
 
+.project-card__link {
+  display: block;
+  text-decoration: none;
+}
+
+.project-card__link:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+
 .project-card img {
   width: 100%;
   aspect-ratio: 1.78;
