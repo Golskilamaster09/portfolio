@@ -333,6 +333,7 @@ h1 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   margin: 0 auto;
+  perspective: 1000px;
 }
 
 .project-card {
@@ -343,12 +344,15 @@ h1 {
   background: var(--surface);
   transition:
     border-color 180ms ease,
-    transform 180ms ease;
+    transform 300ms ease,
+    box-shadow 300ms ease;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-4px) rotateX(2deg) rotateY(-2deg);
   border-color: #41444e;
+  box-shadow: 0 16px 32px rgb(0 0 0 / 22%);
 }
 
 .project-card__link {
@@ -361,13 +365,23 @@ h1 {
   outline-offset: 4px;
 }
 
-.project-card img {
+.project-card__image {
+  overflow: hidden;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.project-card__image img {
   width: 100%;
   aspect-ratio: 1.78;
   display: block;
-  margin-bottom: 16px;
-  border-radius: 8px;
   object-fit: cover;
+  transition: filter 300ms ease;
+}
+
+.project-card:hover .project-card__image img,
+.project-card:focus-within .project-card__image img {
+  filter: blur(1px);
 }
 
 .project-card h3 {
@@ -382,6 +396,29 @@ h1 {
   color: var(--muted);
   font-size: 16px;
   line-height: 1.55;
+}
+
+.project-card__footer {
+  margin-top: 16px;
+}
+
+.project-card__tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card__tech-list li {
+  padding: 4px 10px;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 6%);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .services {
